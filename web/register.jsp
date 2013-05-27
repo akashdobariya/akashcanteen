@@ -397,8 +397,7 @@
                         label="Register as a"
                         list="{'Student', 'Faculty', 'Canteen Member', 'Other '}"
                         name="type"
-                        headerKey="Student"
-                        headerValue="Student"/>
+                        />
                 
                 <s:textfield
                         label="Name"
