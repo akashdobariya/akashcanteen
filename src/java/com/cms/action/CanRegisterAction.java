@@ -4,7 +4,7 @@
  */
 package com.cms.action;
 
-import com.cms.model.canRegister;
+import com.cms.model.CanRegister;
 import com.opensymphony.xwork2.ModelDriven;
 
 
@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.ModelDriven;
  */
 public class CanRegisterAction implements ModelDriven{
 
- canRegister can=new canRegister();
+ CanRegister can=new CanRegister();
     
     @Override
     public Object getModel() {
