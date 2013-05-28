@@ -4,7 +4,11 @@
  */
 package com.cms.model;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -84,11 +88,30 @@ public class Register {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-    public void inesrtRegister()
+    public boolean inesrtRegister()
     {
-        DbConnection con=new DbConnection();
-        con.dbCon();
-        String q="insert into user(userName,userPassword,userType,userFullName,userEmail,Programme,userPhone) values(" + "'" + username + "','" + password + "','" + type + "','" + name + "','" + email + "','" + programme + "','" + phone + "')";
-        con.insert(q);
+        boolean result=true;
+        try {
+            DbConnection con=new DbConnection();
+            con.dbCon();
+            
+            String q1="select username from user";
+            ResultSet rs=con.select(q1);
+            while(rs.next())
+            {
+                if(this.username.equalsIgnoreCase(rs.getString("username")))
+                {
+                    result=false;
+                }
+            }
+            if(result)
+            {
+                String q2="insert into user(userName,userPassword,userType,userFullName,userEmail,Programme,userPhone) values(" + "'" + username + "','" + password + "','" + type + "','" + name + "','" + email + "','" + programme + "','" + phone + "')";
+                con.insert(q2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Register.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 }
