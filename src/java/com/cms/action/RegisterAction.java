@@ -16,8 +16,16 @@ public class RegisterAction implements ModelDriven{
     
     public String doRegister()
     {
-        reg.inesrtRegister();
-        return "success";
+        
+        boolean result=reg.inesrtRegister();
+        if(result)
+        {
+            return "success";
+        }
+        else
+        {
+            return "failure";
+        }
     }
     
     
